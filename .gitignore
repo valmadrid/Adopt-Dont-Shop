@@ -127,3 +127,17 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#Folders
+dataset/
+wip/
+
+
+#Images, webpages, raw data
+*.jpg
+*.jpeg
+*.html
+*.json
+*.csv
+*.png
+
