@@ -106,9 +106,9 @@ def breed_dummies(df):
     #df.columns = df.columns.map(lambda x: x.lower())
     
     #drop the columns created for comparison
-    df.drop(["check"], axis=1, inplace=True)
+    new_df = df.drop(["check"], axis=1)
     
-    return df
+    return new_df
 
 
 def color_dummies(df):
@@ -163,9 +163,9 @@ def color_dummies(df):
     #df.columns = df.columns.map(lambda x: x.lower())
     
     #drop the columns created for comparison
-    df.drop(["color_black", "color3_check", "check1", "check2"], axis=1, inplace=True)
+    new_df = df.drop(["color_black", "color3_check", "check1", "check2"], axis=1)
 
-    return df
+    return new_df
 
 
 def drop_columns(df, cols_to_delete):
@@ -175,9 +175,9 @@ def drop_columns(df, cols_to_delete):
     cols_to_delete = list of column header names to delete
     """
 
-    df.drop(columns=cols_to_delete, axis=1, inplace=True)
+    new_df = df.drop(columns=cols_to_delete, axis=1)
 
-    return df
+    return new_df
 
 
 def drop_rows(df, rows_to_delete):
@@ -187,9 +187,9 @@ def drop_rows(df, rows_to_delete):
     rows_to_delete = list of indices to delete
     """
 
-    df.drop(index=rows_to_delete, axis=0, inplace=True)
+    new_df = df.drop(index=rows_to_delete, axis=0)
 
-    return df
+    return new_df
 
 
 def plot_bar(df, x, y, title, rotate = False):
@@ -257,3 +257,52 @@ def plot_bar_hue(df, x, y, hue, title, rotate = False):
     if rotate:
         plt.xticks(rotation=65, fontsize=10)
     plt.show()
+    
+    
+def bin_breed(table):
+    """
+    Takes a df then bins the breed columns
+    """
+    
+    df = table.copy()
+    
+    df["check"] = df.breed1 == df.breed2
+    df["breed_bin"] = pd.Series()
+    
+    for i in range(len(df)):
+        #breed1 = mixed then mixed
+        if df.breed1.iloc[i] == 307:
+            df.breed_bin.iloc[i] = 3
+        #breed1 = domestic
+        elif df.breed1.iloc[i] in [264, 265, 266]:
+            #breed2 = domestic then domestic
+            if df.breed2.iloc[i] in [264, 265, 266]:
+                df.breed_bin.iloc[i] = 2
+            #breed2 = mixed then mixed
+            elif df.breed2.iloc[i] == 307:
+                df.breed_bin.iloc[i] = 3
+            #breed2 nan then domestic
+            elif not(df.breed2.iloc[i]):
+                df.breed_bin.iloc[i] = 2
+            #breed2 others then pure
+            else:
+                df.breed_bin.iloc[i]= 1
+        #breed1 others
+        else:
+            #breed2 = mixed then mixed
+            if df.breed2.iloc[i] == 307:
+                df.breed_bin.iloc[i] = 3
+            #breed2 domestic then pure
+            elif df.breed2.iloc[i] in [264, 265, 266]:
+                df.breed_bin.iloc[i]= 1
+            #breed2 nan then pure
+            elif not(df.breed2.iloc[i]):
+                df.breed_bin.iloc[i]= 1
+            #breed2 diff then mixed
+            elif df.check.iloc[i] == False:
+                df.breed_bin.iloc[i] = 3
+            #breed2 same then pure
+            elif df.check.iloc[i] == True:
+                df.breed_bin.iloc[i]= 1
+        
+    return df
