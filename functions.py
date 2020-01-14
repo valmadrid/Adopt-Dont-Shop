@@ -28,6 +28,24 @@ from sklearn.tree import export_graphviz
 import pydotplus
 
 
+from itertools import cycle
+
+from sklearn import svm, datasets
+from sklearn.metrics import roc_curve, auc
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import label_binarize
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.multiclass import OneVsRestClassifier
+from scipy import interp
+from sklearn.metrics import roc_auc_score
+from sklearn.metrics import confusion_matrix
+from scipy import interp
+from sklearn.metrics import classification_report
+from sklearn.preprocessing import LabelBinarizer
+from  sklearn.metrics import precision_recall_fscore_support
+from sklearn.metrics import multilabel_confusion_matrix
+
+
 def minmax_scaler(X_train, X_test, cols_to_scale):
     """
     Takes in X train and test and scale then columns specified in cols_to_scale (list)
@@ -56,17 +74,3 @@ def minmax_scaler(X_train, X_test, cols_to_scale):
     X_test_scaled = pd.concat([X_test_scaled, X_test_cat], axis=1)
 
     return X_train_scaled, X_test_scaled
-
-
-def encode(X, cols_to_encode):
-    """
-    Takes in X table of features then convert the columns specified in cols_to_encode into dummy variables
-    
-    """
-
-    X_encoded = pd.get_dummies(X,
-                               columns=cols_to_encode,
-                               drop="First",
-                               dtype="float64")
-
-    return X_encoded

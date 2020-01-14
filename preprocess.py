@@ -7,6 +7,13 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
+from IPython.display import Image
+
+import os, json
+
+from sklearn.preprocessing import StandardScaler, MinMaxScaler, PolynomialFeatures
+
+
 def get_breed(df, breeds, column):
     """
     Takes:
@@ -192,7 +199,7 @@ def drop_rows(df, rows_to_delete):
     return new_df
 
 
-def plot_bar(df, x, y, title, rotate = False):
+def plot_bar(df, x, y, title, figsize = False, rotate = False):
     """
     Takes in:
     df = table to plot
@@ -201,7 +208,11 @@ def plot_bar(df, x, y, title, rotate = False):
     title = title of the bar graph
     
     """
-
+    
+    if figsize:
+        plt.figure(figsize = figsize);
+    else:
+        plt.figure(figsize = [8, 7]);
     _barplot = sns.barplot(x=x, y=y, data=df)
     show_values_on_bars(_barplot)
     plt.title(title)
@@ -215,18 +226,25 @@ def show_values_on_bars(axs):
     Add labels to each bar
     
     """
-    def _show_on_single_plot(ax):
-        for p in ax.patches:
-            _x = p.get_x() + p.get_width() / 2
-            _y = p.get_y() + p.get_height()
-            value = int(p.get_height())
-            ax.text(_x, _y, value, ha="center")
 
     if isinstance(axs, np.ndarray):
         for idx, ax in np.ndenumerate(axs):
             _show_on_single_plot(ax)
     else:
         _show_on_single_plot(axs)
+        
+        
+def _show_on_single_plot(ax):
+        for p in ax.patches:
+                _x = p.get_x() + p.get_width() / 2
+                _y = p.get_y() + p.get_height()
+                try:
+                    int(p.get_height())
+                except:
+                    ax.text(_x, _y, "", ha="center")
+                else:
+                    value = int(p.get_height())
+                    ax.text(_x, _y, value, ha="center")
 
         
 def plot_hist(series, xlabel, figsize):
@@ -241,7 +259,7 @@ def plot_hist(series, xlabel, figsize):
     plt.show()
     
     
-def plot_bar_hue(df, x, y, hue, title, rotate = False):
+def plot_bar_hue(df, x, y, hue, title, figsize = False, rotate = False):
     """
     Takes in:
     df = table to plot
@@ -250,7 +268,11 @@ def plot_bar_hue(df, x, y, hue, title, rotate = False):
     title = title of the bar graph
     
     """
-
+    
+    if figsize:
+        plt.figure(figsize = figsize);
+    else:
+        plt.figure(figsize = [8, 7]);
     _barplot = sns.barplot(x=x, y=y, hue=hue, data=df)
     show_values_on_bars(_barplot)
     plt.title(title)
@@ -306,3 +328,105 @@ def bin_breed(table):
                 df.breed_bin.iloc[i]= 1
         
     return df
+
+
+def get_pet_image(images_folder_path, pet_id):
+    """
+    Takes in folder path and pet_id (both strings), then prints the first image uploaded in Petfinder.my
+    """
+    
+    display(Image(images_folder_path+pet_id+"-1.jpg"))
+
+def get_image(images_folder_path, image_filename):
+    """
+    Takes in folder path and image_filename.jpg (both strings), then prints image_filename.jpg
+    """
+    
+    display(Image(images_folder_path+image_filename))
+
+
+def get_image_filename(df, images_folder_path):
+    
+    """
+    Takes in df and path where the images are saved (string) and returns a df with column for image filename
+    """
+
+    image_files = []
+
+    for r, d, f in os.walk(images_folder_path):  # r=root, d=directories, f = files
+        for file in f:
+            if ".jpg" in file:
+                image_files.append(os.path.join(file))
+
+    images = pd.DataFrame(data = image_files, columns = ["filename"])
+    images["pet_id"] = images["filename"].map(lambda x: str(x)[:9])
+    images = pd.merge(images, df, on="pet_id", how="left")
+
+    images.to_csv("images_with_pet_details.csv", index=False)
+
+    print("There are a total of ",len(images), " pet images.")
+
+    unique_images = images.drop_duplicates("pet_id")[["pet_id", "filename"]]
+
+    unique_images.to_csv("unique_images.csv", index=False)
+
+    new_df = pd.merge(df, unique_images, on="pet_id", how="left")
+    
+    print(new_df.filename.isna().sum(), "pets have no images.")
+
+    return new_df
+
+
+def get_sentiment_analysis(table, sentiment_folder_path):
+    """
+    Takes in a table (df) and sentiment_path (folder path of the sentiment analysis) 
+    then returns a df with sentiment score & magnitude and language.
+    
+    """
+    
+    df = table.copy()
+    df["desc_score"] = pd.Series()
+    df["desc_magnitude"] = pd.Series()
+#     df["desc_language"] = pd.Series()
+
+    for i in range(len(df)):
+        json_filename = df.pet_id.iloc[i] + ".json"
+        
+        #search for the pet_id's json file 
+        try:
+            with open(os.path.join(sentiment_folder_path, json_filename)) as json_file:
+                sentiment = json.load(json_file)
+        #if file is not existing then move to next file
+        except:
+            continue
+        #if existing, sentiment score & magnitude and language to the df
+        else:
+            df.desc_score.iloc[i] = sentiment["documentSentiment"]["score"]
+            df.desc_magnitude.iloc[i] = sentiment["documentSentiment"]["magnitude"]
+#             df.desc_language.iloc[i] = sentiment["language"]
+    
+#     print(df.desc_score.isna().sum(),"descriptions have no sentiment analysis.")
+    
+    return df
+
+def get_interaction(df, interaction_column_list, degree=3):
+    """
+    Takes in a df and returns a df with interaction columns based on the interaction_column_list
+    """
+    
+    
+    X_poly = df[interaction_column_list]
+
+    poly = PolynomialFeatures(degree=degree,
+                              interaction_only=True,
+                              include_bias=False)
+    X_interaction = poly.fit_transform(X_poly)
+    new_df = pd.DataFrame(
+        X_interaction,
+        columns=[
+            feat.replace(" ", "_")
+            for feat in poly.get_feature_names(interaction_column_list)
+        ],
+        index=X_poly.index)
+
+    return new_df
