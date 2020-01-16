@@ -75,7 +75,6 @@ def breed_dummies(df):
     df["check"] = df["breed1"] == df["breed2"]
     
     
-
     for i in range(len(df)):
         #if breed1 is Domestic... then change to Domestic
         if df.breed1.iloc[i] in [264, 265, 266]:
@@ -326,6 +325,8 @@ def bin_breed(table):
             #breed2 same then pure
             elif df.check.iloc[i] == True:
                 df.breed_bin.iloc[i]= 1
+                
+    df["breed_bin"] = df["breed_bin"].astype("int64")
         
     return df
 
@@ -385,8 +386,6 @@ def get_sentiment_analysis(table, sentiment_folder_path):
     """
     
     df = table.copy()
-    df["desc_score"] = pd.Series()
-    df["desc_magnitude"] = pd.Series()
 #     df["desc_language"] = pd.Series()
 
     for i in range(len(df)):
@@ -400,9 +399,16 @@ def get_sentiment_analysis(table, sentiment_folder_path):
         except:
             continue
         #if existing, sentiment score & magnitude and language to the df
-        else:
-            df.desc_score.iloc[i] = sentiment["documentSentiment"]["score"]
-            df.desc_magnitude.iloc[i] = sentiment["documentSentiment"]["magnitude"]
+        else: 
+            score = 0
+            df.at[i,"desc_score"] = sentiment["documentSentiment"]["score"]
+            df.at[i,"desc_magnitude"] = sentiment["documentSentiment"]["magnitude"]
+            if len(sentiment["sentences"]) > 0:
+                for j in range(len(sentiment["sentences"])):
+                    score += sentiment["sentences"][j]["sentiment"]["score"]
+                df.at[i, "desc_sentences_score_sum"] = score
+                df.at[i, "desc_sentences_score_avg"] = score / len(sentiment["sentences"])
+                score = 0
 #             df.desc_language.iloc[i] = sentiment["language"]
     
 #     print(df.desc_score.isna().sum(),"descriptions have no sentiment analysis.")
