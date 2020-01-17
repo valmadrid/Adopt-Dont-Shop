@@ -3,8 +3,11 @@ import pickle
 
 import preprocess as pre
 
-def get_reco(i, df, top=2):
+def get_similar_pet_listings(i, top=2):
+    """
     
+    """
+    df = pickle.load(open("pets_reco.pkl", "rb"))
     type_1 = pickle.load(open("df_dogs.pkl", "rb"))
     type_2 = pickle.load(open("df_cats.pkl", "rb"))
     if df.type.loc[i] == 1:
@@ -26,59 +29,87 @@ def get_reco(i, df, top=2):
     else:
         print("Index out of range.  Please select from 0 to", len(df))
 
-def dogs_reco(old_index, new_index, df, top):
+def dogs_reco(pet_index, new_index, df, top):
+    """
     
-    df_cosine_dogs = pickle.load(open("df_cosine_dogs.pkl", "rb"))
+    """
+    
+    df_cosine_dogs = pickle.load(open("df_cosine_dogs_2.pkl", "rb"))
     images_folder_path = "dataset/petfinder-adoption-prediction/train_images/"
-    df_scores = list(enumerate(df_cosine_dogs[new_index]))
-    df_scores = sorted(df_scores, key=lambda x: x[1], reverse=True)
-    df_scores = df_scores[1:top+1]
-    rec_list    = [i[0] for i in df_scores]
-    sim_list    = [i[1] for i in df_scores]
+#     df_scores = list(enumerate(df_cosine_dogs[new_index]))
+#     df_scores = sorted(df_scores, key=lambda x: x[1], reverse=True)
+#     df_scores = df_scores[1:top+1]
+    top_cos = sorted(list(enumerate(df_cosine_dogs[new_index])), key=lambda x: x[1], reverse=True)[1:top+1]
+    rec_list    = [i[0] for i in top_cos]
+    cos_list    = [i[1] for i in top_cos]
     
-    print("Meet.. \n")
-    print("Name :", df.name.loc[old_index])
-    print("Breed :", df.breed1_desc.loc[old_index].title().replace("_"," "),df.breed2_desc.loc[old_index].title().replace("_"," "))
-    print("Location :", df.state_desc.loc[old_index].title().replace("_"," "))
-    print("Description :", df.description.loc[old_index])
-    pre.get_image(images_folder_path, df.filename.loc[old_index])
+    print("Meet: \n")
+    get_details(pet_index, df)
     
-    print("Please check out these listings as well: \n\n")
+    print("\n")
+    print("\n Please check out these listings as well: \n")
     for count, rec in enumerate(rec_list):
-        old_index_rec = get_old_index(rec, df)
-        print("Name :", df.name.loc[old_index_rec])
-        print("Breed :", df.breed1_desc.loc[old_index_rec].title().replace("_"," "),df.breed2_desc.loc[old_index_rec].title().replace("_"," "))
-        print("Location :", df.state_desc.loc[old_index_rec].title().replace("_"," "))
-        print("Description :", df.description.loc[old_index_rec])
-        print("Note: Cosine similarity = ", sim_list[count])
-        pre.get_image(images_folder_path, df.filename.loc[old_index_rec])
+        pet_index_rec = get_old_index(rec, df)
+        get_details(pet_index_rec, df)
+        print("Note: Cosine Similarity =",round(cos_list[count]*100,4), "% \n\n")
         
-def cats_reco(old_index, new_index, df, top):
+        
+def cats_reco(pet_index, new_index, df, top):
+    """
     
-    df_cosine_cats = pickle.load(open("df_cosine_cats.pkl", "rb"))
-    images_folder_path = "dataset/petfinder-adoption-prediction/train_images/"
-    df_scores = list(enumerate(df_cosine_cats[new_index]))
-    df_scores = sorted(df_scores, key=lambda x: x[1], reverse=True)
-    df_scores = df_scores[1:top+1]
-    rec_list    = [i[0] for i in df_scores]
-    sim_list    = [i[1] for i in df_scores]
+    """
     
-    print("Meet.. \n")
-    print("Name :", df.name.loc[old_index])
-    print("Breed :", df.breed1_desc.loc[old_index].title().replace("_"," "),df.breed2_desc.loc[old_index].title().replace("_"," "))
-    print("Location :", df.state_desc.loc[old_index].title().replace("_"," "))
-    print("Description :", df.description.loc[old_index])
-    pre.get_image(images_folder_path, df.filename.loc[old_index])
+    df_cosine_cats = pickle.load(open("df_cosine_cats_2.pkl", "rb"))
+    top_cos = sorted(list(enumerate(df_cosine_cats[new_index])), key=lambda x: x[1], reverse=True)[1:top+1]
+    rec_list    = [i[0] for i in top_cos]
+    cos_list    = [i[1] for i in top_cos]
     
-    print("Please check out these listings as well: \n\n")
+    print("Meet: \n")
+    get_details(pet_index, df)
+    
+    print("\n")
+    print("Please check out these listings as well: \n")
     for count, rec in enumerate(rec_list):
-        old_index_rec = get_old_index(rec, df)
-        print("Name :", df.name.loc[old_index_rec])
-        print("Breed :", df.breed1_desc.loc[old_index_rec].title().replace("_"," "),df.breed2_desc.loc[old_index_rec].title().replace("_"," "))
-        print("Location :", df.state_desc.loc[old_index_rec].title().replace("_"," "))
-        print("Description :", df.description.loc[old_index_rec])
-        print("Note: Cosine similarity = ", sim_list[count])
-        pre.get_image(images_folder_path, df.filename.loc[old_index_rec])
+        pet_index_rec = get_old_index(rec, df)
+        get_details(pet_index_rec, df)
+        print("Note: Cosine Similarity =",round(cos_list[count]*100,4), "% \n\n")
 
 def get_old_index(new_index, subset):
+    """
+    
+    """
     return list(subset.index)[new_index]   
+
+
+def get_details(i, df):
+    """
+    
+    """
+#     'adoption_speed', 'pet_id', 'type', 'name', 'age', 'breed1',
+#        'breed1_desc', 'breed2', 'breed2_desc', 'gender', 'color1',
+#        'color1_desc', 'color2', 'color2_desc', 'color3', 'color3_desc',
+#        'maturity_size', 'fur_length', 'vaccinated', 'dewormed', 'sterilized',
+#        'health', 'quantity', 'fee', 'state', 'state_desc', 'rescuer_id',
+#        'video_count', 'photo_count', 'filename', 'description', 'desc_score',
+#        'desc_magnitude', 'desc_sentences_score_sum',
+#        'desc_sentences_score_avg'
+    
+    
+    images_folder_path = "dataset/petfinder-adoption-prediction/train_images/"
+    print("Name:", df.name.loc[i])
+    print("Gender:", df.gender.loc[i])
+    print("Breed:", df.breed1_desc.loc[i].title().replace("_"," "),df.breed2_desc.loc[i].title().replace("_"," "))
+    print("Color/s:", df.color1_desc.loc[i].title(), df.color2_desc.loc[i].title(), df.color3_desc.loc[i].title())
+    print("Fur Length:", df.fur_length.loc[i])
+    print("Vaccinated:", df.vaccinated.loc[i])
+    print("Dewormed:", df.dewormed.loc[i])
+    print("Spayed or Neutered:", df.sterilized.loc[i])
+    print("Health:", df.health.loc[i])
+    print("No. of Pets in this Listing:", df.quantity.loc[i])
+    if df.fee.loc[i] == 0:
+        print("Adoption Fee: FREE")
+    else:
+        print("Adoption Fee: MYR", round(df.fee.loc[i],2))
+    print("Location :", df.state_desc.loc[i].title().replace("_"," "))
+    print("Description :", df.description.loc[i])
+    pre.get_image(images_folder_path, df.filename.loc[i])
