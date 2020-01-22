@@ -13,7 +13,6 @@ from keras.applications.resnet50 import preprocess_input, decode_predictions
 from keras.layers import GlobalMaxPooling2D
 tf.__version__
 import cv2
-import cv2 as cv
 import pytesseract
 from PIL import Image
 from scipy import ndimage

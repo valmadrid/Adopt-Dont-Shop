@@ -277,6 +277,7 @@ def plot_bar_hue(df, x, y, hue, title, figsize = False, rotate = False):
     plt.title(title)
     if rotate:
         plt.xticks(rotation=65, fontsize=10)
+    plt.legend(loc=1)
     plt.show()
     
     
@@ -329,14 +330,6 @@ def bin_breed(table):
     df["breed_bin"] = df["breed_bin"].astype("int64")
         
     return df
-
-
-def get_pet_image(images_folder_path, pet_id):
-    """
-    Takes in folder path and pet_id (both strings), then prints the first image uploaded in Petfinder.my
-    """
-    
-    display(Image(images_folder_path+pet_id+"-1.jpg"))
 
 def get_image(images_folder_path, image_filename):
     """
