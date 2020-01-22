@@ -1,5 +1,7 @@
 import pandas as pd
 import pickle
+import cv2
+import matplotlib.pyplot as plt
 
 import preprocess as pre
 
@@ -95,9 +97,10 @@ def get_details(i, df):
 #        'desc_sentences_score_avg'
     
     
-    images_folder_path = "dataset/petfinder-adoption-prediction/train_images/"
+#     images_folder_path = "dataset/petfinder-adoption-prediction/train_images/"
     print("Name:", df.name.loc[i])
     print("Gender:", df.gender.loc[i])
+    print("Age in months:", df.age.loc[i])
     print("Breed:", df.breed1_desc.loc[i].title().replace("_"," "),df.breed2_desc.loc[i].title().replace("_"," "))
     print("Color/s:", df.color1_desc.loc[i].title(), df.color2_desc.loc[i].title(), df.color3_desc.loc[i].title())
     print("Fur Length:", df.fur_length.loc[i])
@@ -112,4 +115,18 @@ def get_details(i, df):
         print("Adoption Fee: MYR", round(df.fee.loc[i],2))
     print("Location :", df.state_desc.loc[i].title().replace("_"," "))
     print("Description :", df.description.loc[i])
-    pre.get_image(images_folder_path, df.filename.loc[i])
+    print_images(i, df)
+    
+    
+    
+def print_images(i, df):
+    """
+    
+    """
+        
+    images_folder_path = "dataset/petfinder-adoption-prediction/train_images/"
+    print("Name:", df.name.loc[i])
+    plt.imshow(cv2.cvtColor(cv2.imread(images_folder_path+df.filename[i]), cv2.COLOR_BGR2RGB),);
+    plt.axis("off");
+    plt.show()
+    
