@@ -7,7 +7,7 @@ import preprocess as pre
 
 def get_similar_pet_listings(i, top=2):
     """
-    
+    Takes in an index (integer) of the pet in pets_reco table then returns 
     """
     df = pickle.load(open("pets_reco.pkl", "rb"))
     type_1 = pickle.load(open("df_dogs.pkl", "rb"))
