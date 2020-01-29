@@ -1,5 +1,8 @@
 
-<img src="https://c.wallhere.com/photos/e7/0c/1920x1200_px_animals_cats_dog-729051.jpg!d" alt="Courtesy of Wallhere.com" />
+<img src="https://c.wallhere.com/photos/e7/0c/1920x1200_px_animals_cats_dog-729051.jpg!d" />
+
+*Courtesy of Wallhere*
+
 
 # Petfinder.my:  Helping Rehome Our Pets
 
