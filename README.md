@@ -61,9 +61,9 @@ Additional information regarding the location was added to the dataset: state po
 <a href="https://www.linkedin.com/in/valmadrid/">Grace Valmadrid</a>
 
 ### Credits
-Dataset from <a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Kaggle</a>
+<a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Kaggle</a> for the dataset
 
-External data from <a href="https://www.kaggle.com/chocozzz/petfinder-external-data">chocozzz</a> (Kaggle user)
+<a href="https://www.kaggle.com/chocozzz/petfinder-external-data">chocozzz</a> (Kaggle user) for the external data used in this project
 
-Images from <a href="https://www.petfinder.my">Petfinder.my</a> and <a href="https://c.wallhere.com">Wallhere</a>
+<a href="https://www.petfinder.my">Petfinder.my</a> and <a href="https://c.wallhere.com">Wallhere</a> for the images used here
 
