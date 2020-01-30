@@ -5,11 +5,11 @@
 # Helping Rehome Our Pets
 *Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly.  It is also used as a venue for animal welfare advocates.*
 
-### Introduction
-This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict the adoption rate. As for Petfinder.my, some enhancements were recommended to help boost the adoptability of the pets.  As a supplement, a recommendation system was also created based on images.
+### Summary
+This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict the adoption rate of the pets. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores among all the classifiers and ensemble methods that were used.  Enhancements were recommended Petfinder.my to help boost the adoptability of the pets.  As a supplement, a content-based recommendation system was also developed based on the pet images.
 
 ### Dataset
-<a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Dataset</a> consists of 14k pet listings across Malaysia with the following fields:
+<a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Dataset</a> consists of 14k pet listings across Malaysia:
 
 * Type - Type of animal (1 = Dog, 2 = Cat)
 * Name - Name of pet (Empty if not named)
@@ -50,8 +50,24 @@ Pet images uploaded by the rescuers are also included.  These were used to creat
 
 Additional information regarding the location was added to the dataset: state population, density, area and GDP per capita.
 
-### Methods and Technologies used
+### Process
 
+### Libraries and Modules used
+- Scikit-learn
+- XGBoost
+- Lightgbm
+- Pandas
+- PandasSQL
+- Matplolib
+- Seaborn
+- Pickle
+- Shap
+- OS
+- Shutil
+- Python Imaging Library
+- OpenCV
+- Regular expression operations
+- Wordcloud
 
 ### Results and Recommendations
 
@@ -67,3 +83,6 @@ Additional information regarding the location was added to the dataset: state po
 
 <a href="https://www.petfinder.my">Petfinder.my</a> and <a href="https://c.wallhere.com">Wallhere</a> for the images used here
 
+Footnotes:
+
+1 https://en.wikipedia.org/wiki/Cohen%27s_kappa
