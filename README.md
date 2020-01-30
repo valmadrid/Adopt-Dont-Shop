@@ -7,7 +7,7 @@ Status: WIP
 *Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly.  It is also used as a venue for animal welfare advocates.*
 
 ### Summary
-This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict the adoption rate of the pets. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores among all the classifiers and ensemble methods that were used.  Enhancements were recommended Petfinder.my to help boost the adoptability of the pets.  As a supplement, a content-based recommendation system was also developed based on the pet images.
+This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict the adoption rate of the pets. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (41% and 36%, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended Petfinder.my to help boost the adoptability of the pets.  As a supplement, a content-based recommendation system was also developed based on the pet images.  ResNet50 was employed to extract features from the images.  While cosine similarity was used to measure similarities between images.
 
 ### Dataset
 <a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Dataset</a> consists of 14k pet listings across Malaysia:
@@ -52,6 +52,12 @@ Pet images uploaded by the rescuers are also included.  These were used to creat
 Additional information regarding the location was added to the dataset: state population, density, area and GDP per capita.
 
 ### Process
+Classifer Model:
+
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/workflow%20A.png"/>
+
+Recommeder System:
+
 
 
 ### Results and Recommendations
