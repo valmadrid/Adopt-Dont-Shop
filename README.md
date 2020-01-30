@@ -53,6 +53,9 @@ Additional information regarding the location was added to the dataset: state po
 
 ### Process
 
+
+### Results and Recommendations
+
 ### Libraries and Modules used
 - Scikit-learn
 - XGBoost
@@ -70,19 +73,17 @@ Additional information regarding the location was added to the dataset: state po
 - Regular expression operations
 - Wordcloud
 
-### Results and Recommendations
-
 ### Files
 
 ### Contributor
 <a href="https://www.linkedin.com/in/valmadrid/">Grace Valmadrid</a>
 
 ### Credits
-<a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Kaggle</a> for the dataset
+- <a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Kaggle</a> for the dataset
 
-<a href="https://www.kaggle.com/chocozzz/petfinder-external-data">chocozzz</a> (Kaggle user) for the external data used in this project
+- <a href="https://www.kaggle.com/chocozzz/petfinder-external-data">chocozzz</a> (Kaggle user) for the external data used in this project
 
-<a href="https://www.petfinder.my">Petfinder.my</a> and <a href="https://c.wallhere.com">Wallhere</a> for the images used here
+- <a href="https://www.petfinder.my">Petfinder.my</a> and <a href="https://c.wallhere.com">Wallhere</a> for the images used here
 
 Footnotes:
 
