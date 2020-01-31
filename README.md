@@ -7,12 +7,14 @@ Status: WIP
 *Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly.  It is also used as a venue for animal welfare advocates.*
 
 ### Summary
-This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict the adoption rate of the pets. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (42% and 36%, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended Petfinder.my to help boost the adoptability of the pets.  As a supplement, a content-based recommendation system was also developed based on the pet images.  ResNet50 was employed to extract features from the images.  While cosine similarity was used to measure similarities between images.
+This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (42% and 36%, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
+
+As a supplement, a content-based recommendation system was also developed based on the pet images.  ResNet50 was employed to extract features from the images while cosine similarity was used to measure similarities between images.
 
 ### Dataset
 <a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Dataset</a> consists of 14k pet listings across Malaysia:
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/data%20fields.png" width="500" height="500"/>
+<FIFI PHOTO HERE>
 
 <a href="https://cloud.google.com/natural-language/">Google Cloud Natural Language API</a> was used to extract sentiment analysis from the *description*.  Each description was given score and magnitude.
 
