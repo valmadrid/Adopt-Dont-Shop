@@ -125,7 +125,7 @@ def print_images(i, df):
     """
         
     images_folder_path = "dataset/petfinder-adoption-prediction/train_images/"
-    print("Name:", df.name.loc[i])
+    #print("Name:", df.name.loc[i])
     plt.imshow(cv2.cvtColor(cv2.imread(images_folder_path+df.filename[i]), cv2.COLOR_BGR2RGB),);
     plt.axis("off");
     plt.show()
