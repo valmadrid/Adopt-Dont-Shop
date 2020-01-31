@@ -97,7 +97,7 @@ def score_clf(X_train, X_test, y_train, y_test, count, estimator, **kwargs):
 
     print("{}. {}:".format(count + 1, estimator.__class__.__name__))
     print("Accuracy: {}".format(acc_score))
-    print("Quadratic Cohen-Kappa Score: {}".format(cohen_kappa))
+    print("Quadratic Cohen's kappa score: {}".format(cohen_kappa))
     print("\n")
     print("Confusion Matrix: \n")
     plot_confusion_matrix(estimator, X_test, y_test, normalize="true", cmap=plt.cm.GnBu);
@@ -129,7 +129,7 @@ def evaluate(estimator, X_train, X_test, y_train, y_test):
     probas = estimator.predict_proba(X_test)
     print("---------------------------------------------------------------------")
     print("Accuracy score: ", round(accuracy_score(y_test, y_test_pred)*100), "%")
-    print("Quadratic Cohen-Kappa score: ", round(cohen_kappa_score(y_test, y_test_pred, weights="quadratic")*100), "%")
+    print("Quadratic Cohen's kappa score: ", round(cohen_kappa_score(y_test, y_test_pred, weights="quadratic")*100), "%")
     print("---------------------------------------------------------------------")
     print("Classification Report: \n", classification_report(y_test, y_test_pred))
     print("---------------------------------------------------------------------")
