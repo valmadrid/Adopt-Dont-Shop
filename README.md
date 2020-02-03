@@ -49,7 +49,7 @@ Data cleaning and pre-processing: <a href="https://github.com/valmadrid/Petfinde
 
 Model evaluation: <a href="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/functions.py">functions.py</a>
 
-Recommender system: <a href="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/recommendation.py">recommendation.py</a>
+Recommender system: <a href="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/get_similar_pets.ipynb">get_similar_pets.ipynb</a> (interactive), <a href="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/recommendation.py">recommendation.py</a>
 
 Presentation slides: <a href="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/Petfinder.pdf">petfinder.pdf</a>
 
