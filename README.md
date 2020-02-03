@@ -9,19 +9,17 @@ Status: WIP
 ### Summary
 This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (42% and 36%, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
 
-As a supplement, a content-based recommendation system was also developed based on the pet images.  ResNet50 was employed to extract features from the images while cosine similarity was used to measure similarities between images.
+As a supplement, a content-based recommendation system was also developed based on the pet images.  ResNet-50<sup>2</sup> was employed to extract features from the images while cosine similarity was used to measure similarities between images.
 
 ### Dataset
-<a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Dataset</a> consists of 14k pet listings across Malaysia:
+<a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Dataset</a> consists of 14k pet listings across Malaysia.  Each listing has the following features:
 
-<FIFI PHOTO HERE>
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/fifi.png" />
 
-<a href="https://cloud.google.com/natural-language/">Google Cloud Natural Language API</a> was used to extract sentiment analysis from the *description*.  Each description was given score and magnitude.
+<a href="https://cloud.google.com/natural-language/">Google Cloud Natural Language API</a> was used to extract sentiment from the *description*.  Each description has score and magnitude values.
 
 > - score is the overall emotional leaning of the text; it ranges between -1.0 (negative sentiment) and 1.0 (positive sentiment)
 > - magnitude denotes the overall strength of emotion (or the score); longer text has higher magnitude
-
-Pet images uploaded by the rescuers are also included.  These were used to create the recommender system.
 
 Additional information regarding the location was added to the dataset: state population, density, area and GDP per capita.
 
@@ -36,22 +34,12 @@ Recommender System:
 
 ### Results and Recommendations
 
-### Libraries and Modules used
+### Important Libraries and Modules used
 - Scikit-learn
 - XGBoost
 - Lightgbm
-- Pandas
-- PandasSQL
-- Matplolib
-- Seaborn
-- Pickle
 - Shap
-- OS
-- Shutil
-- Python Imaging Library
-- OpenCV
-- Regular expression operations
-- Wordcloud
+- Keras
 
 ### Files
 
@@ -68,3 +56,4 @@ Recommender System:
 Footnotes:
 
 1 https://en.wikipedia.org/wiki/Cohen%27s_kappa
+2 https://keras.io/applications/#resnet
