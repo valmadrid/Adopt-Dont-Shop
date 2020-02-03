@@ -34,6 +34,8 @@ Recommender System:
 
 ### Results and Recommendations
 
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/scores.png" />
+
 ### Important Libraries and Modules used
 - Scikit-learn
 - XGBoost
