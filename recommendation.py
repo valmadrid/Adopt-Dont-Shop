@@ -2,12 +2,38 @@ import pandas as pd
 import pickle
 import cv2
 import matplotlib.pyplot as plt
+import numpy as np
+from keras.preprocessing import image
+from keras.applications.resnet50 import preprocess_input
 
 import preprocess as pre
 
+
+
+def load_image(df, index, images_folder_path):
+    """
+    Loads an image from the filename specified in df.filename[index]
+    """
+    
+    return cv2.imread(images_folder_path+df.filename[index])
+
+
+def get_features(model, image_filename, images_folder_path):
+    """
+    Takes in model, image filename (string) and image folder path (string) then reshapes and converts the images into an array using the model
+    """
+
+    img = image.load_img(images_folder_path + image_filename,
+                         target_size=(224, 224))
+    x = image.img_to_array(img)
+    x = np.expand_dims(x, axis=0)
+    x = preprocess_input(x)
+    return model.predict(x).reshape(-1)
+
+
 def get_similar_pet_listings(i, top=2):
     """
-    Takes in an index (integer) of the pet in pets_reco table then returns 
+    Takes in an index (integer) of the pet in pets_reco table then returns top n similar pets
     """
     df = pickle.load(open("pets_reco.pkl", "rb"))
     type_1 = pickle.load(open("df_dogs.pkl", "rb"))
@@ -33,14 +59,12 @@ def get_similar_pet_listings(i, top=2):
 
 def dogs_reco(pet_index, new_index, df, top):
     """
+    Used by get_similar_pet_listins to get top n similar dogs
     
     """
     
-    df_cosine_dogs = pickle.load(open("df_cosine_dogs_2.pkl", "rb"))
+    df_cosine_dogs = pickle.load(open("df_cosine_dogs.pkl", "rb"))
     images_folder_path = "dataset/petfinder-adoption-prediction/train_images/"
-#     df_scores = list(enumerate(df_cosine_dogs[new_index]))
-#     df_scores = sorted(df_scores, key=lambda x: x[1], reverse=True)
-#     df_scores = df_scores[1:top+1]
     top_cos = sorted(list(enumerate(df_cosine_dogs[new_index])), key=lambda x: x[1], reverse=True)[1:top+1]
     rec_list    = [i[0] for i in top_cos]
     cos_list    = [i[1] for i in top_cos]
@@ -53,15 +77,16 @@ def dogs_reco(pet_index, new_index, df, top):
     for count, rec in enumerate(rec_list):
         pet_index_rec = get_old_index(rec, df)
         get_details(pet_index_rec, df)
-        print("Note: Cosine Similarity =",round(cos_list[count]*100,4), "% \n\n")
+        print("Note: Cosine Similarity =",cos_list[count], "\n\n")
         
         
 def cats_reco(pet_index, new_index, df, top):
     """
+    Used by get_similar_pet_listins to get top n similar cats
     
     """
     
-    df_cosine_cats = pickle.load(open("df_cosine_cats_2.pkl", "rb"))
+    df_cosine_cats = pickle.load(open("df_cosine_cats.pkl", "rb"))
     top_cos = sorted(list(enumerate(df_cosine_cats[new_index])), key=lambda x: x[1], reverse=True)[1:top+1]
     rec_list    = [i[0] for i in top_cos]
     cos_list    = [i[1] for i in top_cos]
@@ -74,10 +99,11 @@ def cats_reco(pet_index, new_index, df, top):
     for count, rec in enumerate(rec_list):
         pet_index_rec = get_old_index(rec, df)
         get_details(pet_index_rec, df)
-        print("Note: Cosine Similarity =",round(cos_list[count]*100,4), "% \n\n")
+        print("Note: Cosine Similarity =",cos_list[count], "\n\n")
 
 def get_old_index(new_index, subset):
     """
+    Takes in the new_index of a pet in subset (df) then return the index of that pet in the pets_reco df
     
     """
     return list(subset.index)[new_index]   
@@ -85,19 +111,9 @@ def get_old_index(new_index, subset):
 
 def get_details(i, df):
     """
+    Takes in index i of the pet in df then prints pets info
     
     """
-#     'adoption_speed', 'pet_id', 'type', 'name', 'age', 'breed1',
-#        'breed1_desc', 'breed2', 'breed2_desc', 'gender', 'color1',
-#        'color1_desc', 'color2', 'color2_desc', 'color3', 'color3_desc',
-#        'maturity_size', 'fur_length', 'vaccinated', 'dewormed', 'sterilized',
-#        'health', 'quantity', 'fee', 'state', 'state_desc', 'rescuer_id',
-#        'video_count', 'photo_count', 'filename', 'description', 'desc_score',
-#        'desc_magnitude', 'desc_sentences_score_sum',
-#        'desc_sentences_score_avg'
-    
-    
-#     images_folder_path = "dataset/petfinder-adoption-prediction/train_images/"
     print("Name:", df.name.loc[i])
     print("Gender:", df.gender.loc[i])
     print("Age in months:", df.age.loc[i])
@@ -121,11 +137,11 @@ def get_details(i, df):
     
 def print_images(i, df):
     """
+    Takes in index i of the pet in df then prints image
     
     """
         
     images_folder_path = "dataset/petfinder-adoption-prediction/train_images/"
-    #print("Name:", df.name.loc[i])
     plt.imshow(cv2.cvtColor(cv2.imread(images_folder_path+df.filename[i]), cv2.COLOR_BGR2RGB),);
     plt.axis("off");
     plt.show()
