@@ -30,7 +30,7 @@ Classifer Model:
 
 Recommender System:
 
-
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/workflow%20B.png"/>
 
 ### Results and Recommendations
 
@@ -56,4 +56,5 @@ Recommender System:
 Footnotes:
 
 1 https://en.wikipedia.org/wiki/Cohen%27s_kappa
+
 2 https://keras.io/applications/#resnet
