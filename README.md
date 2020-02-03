@@ -7,7 +7,7 @@ Status: WIP
 *Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly.  It also provides venue for animal welfare advocates.*
 
 ### Summary
-This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (42% and 0.36, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
+This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (0.42 and 0.36, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
 
 As a supplement, a content-based recommendation system was also developed based on the pet images.  ResNet-50<sup>2</sup> was employed to extract features from the images while cosine similarity was used to measure similarities between images.
 
@@ -32,15 +32,17 @@ Recommender System:
 
 <img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/workflow%20B.png"/>
 
-### Conclusion and Recommendations
+### Results and Recommendations
 
 XGBoost emerged to be the best ensemble method based on accuracy and kappa scores:
 <img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/scores.png" height=300x width=500x/>
 
-Best model yielded 42% accuracy and 0.36 kappa scores.
+After tuning the hyperparameters, XGBoost yielded 0.42 accuracy and 0.36 kappa scores.
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/best_model.png" height=500x width=500x/>
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/best_model.png" height=400x width=400x/>
+Based on the above confusion matrix, the model is good at predicting if the pet will not be adopted after 100 days which will still be helpful for decision-making and resource allocation.
 
+Looking at the XGBoost's feature importance, breed and age are the top features in predicting the adoption rate.
 
 ### Important Libraries and Modules used
 - Scikit-learn
