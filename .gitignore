@@ -139,5 +139,5 @@ wip/
 *.html
 *.json
 *.csv
-*.png
+*.pkl
 wip.ipynb
