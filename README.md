@@ -14,7 +14,7 @@ As a supplement, a content-based recommendation system was also developed based 
 ### Dataset
 <a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Dataset</a> consists of 14k pet listings across Malaysia.  Each listing has the following features:
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/fifi.png" />
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/fifi.png" />
 
 <a href="https://cloud.google.com/natural-language/">Google Cloud Natural Language API</a> was used to extract sentiment from the *description*.  Each description has score and magnitude values.
 
@@ -26,11 +26,11 @@ Additional information regarding the location was added to the dataset: state po
 ### Process
 Classifer Model:
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/workflow%20A.png"/>
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/workflow%20A.png"/>
 
 Recommender System:
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/workflow%20B.png"/>
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/workflow%20B.png"/>
 
 ### Results and Recommendations
 
