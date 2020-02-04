@@ -6,10 +6,12 @@ Status: WIP
 # Helping Rehome Our Pets
 *Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly.  It also provides venue for animal welfare advocates.*
 
+*One of the reasons why I want to be a data scientist is I want to change lives.  I hope this project will reduce the suffering and improve the lives of our pets.  I am willing to collaborate with any organisation to improve and deploy this project.*
+
 ### Summary
 This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (0.42 and 0.36, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
 
-As a supplement, a content-based recommendation system was also developed based on the pet images.  ResNet-50<sup>2</sup> was employed to extract features from the images while cosine similarity was used to measure similarities between images.
+As a supplement, a content-based recommendation system was also developed based on the pet images.  ResNet-50<sup>2</sup> was employed to extract features from the images while cosine similarity was used to measure similarities between pets.
 
 ### Dataset
 <a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Dataset</a> consists of 14k pet listings across Malaysia.  Each listing has the following features:
@@ -23,21 +25,19 @@ As a supplement, a content-based recommendation system was also developed based 
 
 Additional information regarding the location was added to the dataset: state population, density, area and GDP per capita.
 
-### Process
-Classifer Model:
+### Process and Results
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/workflow%20A.png"/>
+The main goal of this project is to produce a model that will predict the adoption speed rate of 14k pet listings from Petfinder.my.  
 
-Recommender System:
+Logistic Regression was used to create a baseline model.  It gave 0.35 accuracy and 0.25 kappa scores.
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/workflow%20B.png"/>
+<result here>
+  
+Various classifiers and ensemble methods were then evaluated and the best one that gave the highest accuracy and kappa scores is XGBoost.
 
-### Results and Recommendations
-
-XGBoost emerged to be the best ensemble method based on accuracy and kappa scores:
 <img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/scores.png" height=300x width=500x/>
 
-After tuning the hyperparameters, XGBoost yielded 0.42 accuracy and 0.36 kappa scores.
+After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 kappa scores.
 <img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/best_model.png" height=500x width=500x/>
 
 Based on the above confusion matrix, the model is good at predicting if the pet will not be adopted after 100 days which will still be helpful for decision-making and resource allocation.
