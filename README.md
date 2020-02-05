@@ -41,9 +41,9 @@ After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 
 
 <results here>
 
-Based on XGBoost's feature importance, breed and age are the top features in predicting the adoption rate. If correct values or guesstimates were given for breed and age, model might likely to perform better.
+Breed and age are the top features in predicting the adoption rate. Based on SHAP, age changes the absolute predicted rate on average by more than 90% and breed by about 50%.
 
-Using SHAP to determine the features that 
+
 
 ### Important Libraries and Modules used
 - Scikit-learn
