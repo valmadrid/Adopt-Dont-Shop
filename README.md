@@ -4,17 +4,17 @@ Status: WIP
 <img src="https://www.petfinder.my/images/logo-575x100.png" />
 
 # Helping Rehome Our Pets
-*Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly.  It also provides venue for animal welfare advocates.*
+*Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly and provides venue for animal welfare advocates.*
 
 ### Summary
-This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (42% and 36%, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
+This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (0.42 and 0.36, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
 
-As a supplement, a content-based recommendation system was also developed based on the pet images.  ResNet-50<sup>2</sup> was employed to extract features from the images while cosine similarity was used to measure similarities between images.
+As a supplement, a content-based recommendation system was also developed based on the pet images.  ResNet-50<sup>2</sup> was employed to extract features from the images while cosine similarity was used to measure similarities between pets.
 
 ### Dataset
 <a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Dataset</a> consists of 14k pet listings across Malaysia.  Each listing has the following features:
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/fifi.png" />
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/fifi.png" />
 
 <a href="https://cloud.google.com/natural-language/">Google Cloud Natural Language API</a> was used to extract sentiment from the *description*.  Each description has score and magnitude values.
 
@@ -23,16 +23,27 @@ As a supplement, a content-based recommendation system was also developed based 
 
 Additional information regarding the location was added to the dataset: state population, density, area and GDP per capita.
 
-### Process
-Classifer Model:
+### Process and Results
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/workflow%20A.png"/>
+The main goal of this project is to produce a model that will predict the adoption speed rate and will tell which features are driving it.  
 
-Recommender System:
+The first step was to find trends and correlations through data exploration.  Since not a single feature has strong correlation with the target variable, external data and interactions were introduced.  Correlations improved but are still very low.
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/workflow%20B.png"/>
+Logistic Regression was used to create a baseline model.  It yielded 0.35 accuracy and 0.25 kappa scores.
 
-### Results and Recommendations
+<results here>
+  
+Various classifiers and ensemble methods were then evaluated and the one that gave the highest accuracy and kappa scores is XGBoost.
+
+<results here>
+
+After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 kappa scores.  Its recall for class 4 (no adoption after 100 days) is 66% but it struggles with class 3 (adopted after 31-90 days after listing).
+
+<results here>
+
+Breed and age are the top features in predicting the adoption rate. Based on SHAP, age changes the absolute predicted rate on average by more than 90% and breed by about 50%.
+
+
 
 ### Important Libraries and Modules used
 - Scikit-learn
@@ -49,7 +60,7 @@ Data cleaning and pre-processing: <a href="https://github.com/valmadrid/Petfinde
 
 Model evaluation: <a href="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/functions.py">functions.py</a>
 
-Recommender system: <a href="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/recommendation.py">recommendation.py</a>
+Recommender system: <a href="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/get_similar_pets.ipynb">get_similar_pets.ipynb</a> (interactive), <a href="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/recommendation.py">recommendation.py</a>
 
 Presentation slides: <a href="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/Petfinder.pdf">petfinder.pdf</a>
 
