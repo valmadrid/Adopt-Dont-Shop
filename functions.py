@@ -15,7 +15,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, PolynomialFeatures, MultiLabelBinarizer
 from sklearn.feature_selection import SelectFromModel
 from sklearn.decomposition import PCA
-from sklearn.model_selection import KFold, StratifiedKFold
 from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import SGDClassifier, LogisticRegressionCV, LogisticRegression
@@ -26,12 +25,8 @@ from sklearn.naive_bayes import GaussianNB, MultinomialNB
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.model_selection import GridSearchCV, cross_val_score
 from sklearn.metrics import classification_report, confusion_matrix, cohen_kappa_score, accuracy_score, plot_confusion_matrix
-from sklearn.externals.six import StringIO
-from sklearn.tree import export_graphviz
-from sklearn.metrics import mean_squared_error
-from sklearn.multiclass import OneVsRestClassifier, OneVsOneClassifier
 
-from mord import OrdinalRidge
+
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 
@@ -92,8 +87,8 @@ def score_clf(X_train, X_test, y_train, y_test, count, estimator, **kwargs):
     model.fit(X_train, y_train)
     y_test_pred = model.predict(X_test)
 
-    acc_score = accuracy_score(y_test, y_test_pred)
-    cohen_kappa = cohen_kappa_score(y_test, y_test_pred, weights="quadratic")
+    acc_score = round(accuracy_score(y_test, y_test_pred), 4)
+    cohen_kappa = round(cohen_kappa_score(y_test, y_test_pred, weights="quadratic"), 4)
 
     print("{}. {}:".format(count + 1, estimator.__class__.__name__))
     print("Accuracy: {}".format(acc_score))
@@ -128,8 +123,8 @@ def evaluate(estimator, X_train, X_test, y_train, y_test):
     y_test_pred = estimator.predict(X_test)
     probas = estimator.predict_proba(X_test)
     print("---------------------------------------------------------------------")
-    print("Accuracy score: ", round(accuracy_score(y_test, y_test_pred)*100), "%")
-    print("Quadratic Cohen's kappa score: ", round(cohen_kappa_score(y_test, y_test_pred, weights="quadratic")*100), "%")
+    print("Accuracy score: ", round(accuracy_score(y_test, y_test_pred), 4))
+    print("Quadratic Cohen's kappa score: ", round(cohen_kappa_score(y_test, y_test_pred, weights="quadratic"), 4))
     print("---------------------------------------------------------------------")
     print("Classification Report: \n", classification_report(y_test, y_test_pred))
     print("---------------------------------------------------------------------")
