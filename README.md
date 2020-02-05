@@ -4,9 +4,9 @@ Status: WIP
 <img src="https://www.petfinder.my/images/logo-575x100.png" />
 
 # Helping Rehome Our Pets
-*Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly.  It also provides venue for animal welfare advocates.*
+*Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly and provides venue for animal welfare advocates.*
 
-*One of the reasons why I want to be a data scientist is I want to change lives.  I hope this project will reduce the suffering and improve the lives of our pets.  I am willing to collaborate with any organisation to improve and deploy this project.*
+*One of the reasons why I want to be a data scientist is I want to change lives.  I hope this project will reduce the suffering and better the lives of our pets.  I am willing to collaborate with any organisation to improve and deploy this project.*
 
 ### Summary
 This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (0.42 and 0.36, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
@@ -27,22 +27,23 @@ Additional information regarding the location was added to the dataset: state po
 
 ### Process and Results
 
-The main goal of this project is to produce a model that will predict the adoption speed rate of 14k pet listings from Petfinder.my.  
+The main goal of this project is to produce a model that will predict the adoption speed rate and will tell which features are driving it.  
+
+The first step was to find trends and correlations through data exploration.  Since not a single feature has  astrong correlation with the target variable, external data and interactions were introduced.  Correlations improved but are still very low.
 
 Logistic Regression was used to create a baseline model.  It gave 0.35 accuracy and 0.25 kappa scores.
 
-<result here>
+<results here>
   
 Various classifiers and ensemble methods were then evaluated and the best one that gave the highest accuracy and kappa scores is XGBoost.
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/scores.png" height=300x width=500x/>
+<results here>
 
-After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 kappa scores.
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/best_model.png" height=500x width=500x/>
+After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 kappa scores.  It is good at predicting pets under class 4 (no adoption after 100 days) but it struggles with class 3 (adopted after 31-90 days after listing).
 
-Based on the above confusion matrix, the model is good at predicting if the pet will not be adopted after 100 days which will still be helpful for decision-making and resource allocation.
+<results here>
 
-Looking at the XGBoost's feature importance, breed and age are the top features in predicting the adoption rate.
+Breed and age are the top features in predicting the adoption rate. If correct values or guesstimates were given for breed and age, model might likely to perform better.  Additional information (toy, companion, guardian) can be mapped to the breed.  
 
 ### Important Libraries and Modules used
 - Scikit-learn
