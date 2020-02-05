@@ -6,7 +6,7 @@ Status: WIP
 # Helping Rehome Our Pets
 *Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly and provides venue for animal welfare advocates.*
 
-*One of the reasons why I want to be a data scientist is I want to change lives.  I hope this project will reduce the suffering and better the lives of our pets.  I am willing to collaborate with any organisation to improve and deploy this project.*
+*I hope this will help reduce the suffering and better the lives of our pets.  I am willing to collaborate with any organisation to improve and deploy this project.*
 
 ### Summary
 This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (0.42 and 0.36, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
@@ -43,7 +43,7 @@ After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 
 
 <results here>
 
-Breed and age are the top features in predicting the adoption rate. If correct values or guesstimates were given for breed and age, model might likely to perform better.  Additional information (toy, companion, guardian) can be mapped to the breed.  
+Based on XGBoost's feature importance, breed and age are the top features in predicting the adoption rate. If correct values or guesstimates were given for breed and age, model might likely to perform better.   
 
 ### Important Libraries and Modules used
 - Scikit-learn
