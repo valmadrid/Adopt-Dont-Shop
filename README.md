@@ -43,9 +43,23 @@ After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 
 
 <img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/best_model.png" height=600x width=400x />
 
-Breed and age are the top features in predicting the adoption rate. Based on SHAP, age changes the absolute predicted rate on average by more than 90% and breed by about 50%.
+Age and breed are the top features in predicting the adoption rate. Age changes the absolute predicted rate on average by more than 90% and breed by about 50%.
 
 <img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/shap_summ.png" height=600x width=900x />
+
+### Recommendations
+
+1) Image classification should be used to verify the breed selected by the user.
+2) A content-based recommender system should be added so users can see similar pet listings.
+3) Search window should be updated so that Selangor users can view or can be suggested to view Kuala Lumpur listings.
+4) Listing form should be revamped:
+  - Ask the user if the age is unknown to be able to determine which ones are estimates. Remove the auto-aging option.
+  - Split the color section into 2: dominant and other colors.
+  - Remove size at maturity section (instead this should be based on the breed)
+  - Provide a guide on how to check if a pet has been neutered.
+  - Remove mixed as option under breed.
+
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/reco.png" height=500x width=1000x />
 
 ### Important Libraries and Modules used
 - Scikit-learn
