@@ -59,6 +59,7 @@ Age and breed are the top features in predicting the adoption rate. Age changes 
   - Provide a guide on how to check if a pet has been neutered.
   - Remove mixed as option under breed.
 
+*Recommender System based on Images:*
 <img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/reco.png" height=500x width=1000x />
 
 ### Important Libraries and Modules used
