@@ -1,17 +1,10 @@
 import pandas as pd
 import numpy as np
-import pandas_profiling
-import itertools
-
 import seaborn as sns
 import matplotlib.pyplot as plt
-
-
 from IPython.display import Image
-
 import os, json
-
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, PolynomialFeatures
+from sklearn.preprocessing import MinMaxScaler
 
 
 def get_breed(df, breeds, column):
