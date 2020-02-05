@@ -9,7 +9,7 @@ Status: WIP
 ### Summary
 This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (0.42 and 0.36, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
 
-As a supplement, a content-based recommendation system was also developed based on the pet images.  ResNet-50<sup>2</sup> was employed to extract features from the images while cosine similarity was used to measure similarities between pets.
+As a supplement, a content-based recommendation system was also developed.  ResNet-50<sup>2</sup> was employed to extract features from the images while cosine similarity was used to measure similarities between pets.
 
 ### Dataset
 <a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Dataset</a> consists of 14k pet listings across Malaysia.  Each listing has the following features:
@@ -23,7 +23,7 @@ As a supplement, a content-based recommendation system was also developed based 
 
 Additional information regarding the location was added to the dataset: state population, density, area and GDP per capita.
 
-**Adoption Speed Rate** is the target variable:
+The target variable is the **adoption speed rate**:
 * Class 1: Pet was adopted between 0 and 7 days after being listed.
 * Class 2: Between 8 to 30 days.
 * Class 3: Between 31 to 90 days.
@@ -49,13 +49,15 @@ Age and breed are the top features in predicting the adoption rate. Age changes 
 
 ### Recommendations
 
+To increase the accuracy of the data and the adoptability of the pets, the following enhancements are recommended to Petfinder.my:
+
 1) Image classification should be used to verify the breed selected by the user.
 2) A content-based recommender system should be added so users can see similar pet listings.
 3) Search window should be updated so that Selangor users can view or can be suggested to view Kuala Lumpur listings.
 4) Listing form should be revamped:
   - Ask the user if the age is unknown to be able to determine which ones are estimates. Remove the auto-aging option.
   - Split the color section into 2: dominant and other colors.
-  - Remove size at maturity section (instead this should be based on the breed)
+  - Remove size at maturity section (instead this should be based on the breed).
   - Provide a guide on how to check if a pet has been neutered.
   - Remove mixed as option under breed.
 
