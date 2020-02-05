@@ -23,27 +23,29 @@ As a supplement, a content-based recommendation system was also developed based 
 
 Additional information regarding the location was added to the dataset: state population, density, area and GDP per capita.
 
+**Adoption Speed Rate** is the target variable:
+* Class 1: Pet was adopted between 0 and 7 days after being listed.
+* Class 2: Between 8 to 30 days.
+* Class 3: Between 31 to 90 days.
+* Class 4: No adoption after 100 days. (Note: there are no pets in the dataset that were adopted between 91 to 100 days)
+
 ### Process and Results
 
 The main goal of this project is to produce a model that will predict the adoption speed rate and will tell which features are driving it.  
 
 The first step was to find trends and correlations through data exploration.  Since not a single feature has strong correlation with the target variable, external data and interactions were introduced.  Correlations improved but are still very low.
 
-Logistic Regression was used to create a baseline model.  It yielded 0.35 accuracy and 0.25 kappa scores.
+Logistic Regression was used to create a baseline model.  It yielded 0.35 accuracy and 0.25 kappa scores. Various classifiers and ensemble methods were then evaluated and the one that gave the highest accuracy and kappa scores is XGBoost:
 
-<results here>
-  
-Various classifiers and ensemble methods were then evaluated and the one that gave the highest accuracy and kappa scores is XGBoost.
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/scores.png" height=90x width=280x />
 
-<results here>
+After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 kappa scores.  Its recall for class 4 (no adoption after 100 days) is 66% but it struggles with class 3 (adopted between 31-90 days).
 
-After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 kappa scores.  Its recall for class 4 (no adoption after 100 days) is 66% but it struggles with class 3 (adopted after 31-90 days after listing).
-
-<results here>
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/best_model.png" height=600x width=400x />
 
 Breed and age are the top features in predicting the adoption rate. Based on SHAP, age changes the absolute predicted rate on average by more than 90% and breed by about 50%.
 
-
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/best_model.png" height=600x width=400x />
 
 ### Important Libraries and Modules used
 - Scikit-learn
