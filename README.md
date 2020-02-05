@@ -6,8 +6,6 @@ Status: WIP
 # Helping Rehome Our Pets
 *Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly and provides venue for animal welfare advocates.*
 
-*I hope this will help reduce the suffering and better the lives of our pets.  I am willing to collaborate with any organisation to improve and deploy this project.*
-
 ### Summary
 This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (0.42 and 0.36, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
 
@@ -29,21 +27,23 @@ Additional information regarding the location was added to the dataset: state po
 
 The main goal of this project is to produce a model that will predict the adoption speed rate and will tell which features are driving it.  
 
-The first step was to find trends and correlations through data exploration.  Since not a single feature has  astrong correlation with the target variable, external data and interactions were introduced.  Correlations improved but are still very low.
+The first step was to find trends and correlations through data exploration.  Since not a single feature has strong correlation with the target variable, external data and interactions were introduced.  Correlations improved but are still very low.
 
-Logistic Regression was used to create a baseline model.  It gave 0.35 accuracy and 0.25 kappa scores.
+Logistic Regression was used to create a baseline model.  It yielded 0.35 accuracy and 0.25 kappa scores.
 
 <results here>
   
-Various classifiers and ensemble methods were then evaluated and the best one that gave the highest accuracy and kappa scores is XGBoost.
+Various classifiers and ensemble methods were then evaluated and the one that gave the highest accuracy and kappa scores is XGBoost.
 
 <results here>
 
-After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 kappa scores.  It is good at predicting pets under class 4 (no adoption after 100 days) but it struggles with class 3 (adopted after 31-90 days after listing).
+After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 kappa scores.  Its recall for class 4 (no adoption after 100 days) is 66% but it struggles with class 3 (adopted after 31-90 days after listing).
 
 <results here>
 
-Based on XGBoost's feature importance, breed and age are the top features in predicting the adoption rate. If correct values or guesstimates were given for breed and age, model might likely to perform better.   
+Based on XGBoost's feature importance, breed and age are the top features in predicting the adoption rate. If correct values or guesstimates were given for breed and age, model might likely to perform better.
+
+Using SHAP to determine the features that 
 
 ### Important Libraries and Modules used
 - Scikit-learn
