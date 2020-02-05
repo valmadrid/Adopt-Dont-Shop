@@ -45,7 +45,7 @@ After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 
 
 Age and breed are the top features in predicting the adoption rate. Age changes the absolute predicted rate on average by more than 90% and breed by about 50%.
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/shap_summ.png" height=600x width=900x />
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/shap_summ.png" height=600x width=800x />
 
 ### Recommendations
 
@@ -59,7 +59,7 @@ Age and breed are the top features in predicting the adoption rate. Age changes 
   - Provide a guide on how to check if a pet has been neutered.
   - Remove mixed as option under breed.
 
-*Recommender System based on Images:*
+##### Recommender System based on Images:
 <img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/reco.png" height=500x width=1000x />
 
 ### Important Libraries and Modules used
