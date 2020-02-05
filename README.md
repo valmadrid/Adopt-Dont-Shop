@@ -37,15 +37,15 @@ The first step was to find trends and correlations through data exploration.  Si
 
 Logistic Regression was used to create a baseline model.  It yielded 0.35 accuracy and 0.25 kappa scores. Various classifiers and ensemble methods were then evaluated and the one that gave the highest accuracy and kappa scores is XGBoost:
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/scores.png" height=90x width=280x />
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/scores.png" height=100x width=350x />
 
-After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 kappa scores.  Its recall for class 4 (no adoption after 100 days) is 66% but it struggles with class 3 (adopted between 31-90 days).
+After tuning the hyperparameters, the best model yielded 0.42 accuracy and 0.36 kappa scores.  Its recall for class 4 (no adoption after 100 days) is 0.66 but it struggles with class 3 (adopted between 31-90 days).
 
 <img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/best_model.png" height=600x width=400x />
 
 Breed and age are the top features in predicting the adoption rate. Based on SHAP, age changes the absolute predicted rate on average by more than 90% and breed by about 50%.
 
-<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/best_model.png" height=600x width=400x />
+<img src="https://github.com/valmadrid/Petfinder-Malaysia-Helping-Rehome-Our-Pets-/blob/master/images/feature_imp.png" height=600x width=400x />
 
 ### Important Libraries and Modules used
 - Scikit-learn
