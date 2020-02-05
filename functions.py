@@ -1,34 +1,23 @@
 
 import pandas as pd
-
 import numpy as np
-
 import seaborn as sns
 import matplotlib.pyplot as plt
-import itertools
-
-from statistics import mode
-
 from sklearn.model_selection import train_test_split
-from imblearn.over_sampling import SMOTE
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, PolynomialFeatures, MultiLabelBinarizer
-from sklearn.feature_selection import SelectFromModel
-from sklearn.decomposition import PCA
-from sklearn.neural_network import MLPClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import SGDClassifier, LogisticRegressionCV, LogisticRegression
+from sklearn.preprocessing import MinMaxScaler, PolynomialFeatures
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, BaggingClassifier, ExtraTreesClassifier, GradientBoostingClassifier
-from sklearn.naive_bayes import GaussianNB, MultinomialNB
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn.model_selection import GridSearchCV, cross_val_score
-from sklearn.metrics import classification_report, confusion_matrix, cohen_kappa_score, accuracy_score, plot_confusion_matrix
-
-
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
+
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import classification_report, cohen_kappa_score, accuracy_score, plot_confusion_matrix
+
+
+
 
 
 def minmax_scaler(X_train, X_test, cols_to_scale):
