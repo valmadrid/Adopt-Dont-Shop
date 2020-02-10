@@ -9,7 +9,7 @@ Status: WIP
 ### Summary
 This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>1</sup>  scores (0.42 and 0.36, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
 
-As a supplement, a content-based recommendation system was also developed.  ResNet-50<sup>2</sup> was employed to extract features from the images while cosine similarity was used to measure similarities between pets.
+As a supplement, a content-based recommender system was also created.  ResNet-50<sup>2</sup> was employed to extract features from the images while cosine similarity was used to measure similarities between pets.
 
 ### Dataset
 <a href="https://www.kaggle.com/c/petfinder-adoption-prediction">Dataset</a> consists of 14k pet listings across Malaysia.  Each listing has the following features:
