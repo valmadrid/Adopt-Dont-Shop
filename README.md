@@ -7,7 +7,8 @@ Status: WIP
 *Petfinder.my is a Malaysian website that hosts pet listings for adoption and for sale.  It also educates the public on how to manage their pets responsibly and provides venue for animal welfare advocates.*
 
 ### Summary
-This project aims to help shelters, rescuers and owners rehome their pets faster.  A classifier model was developed to predict pet adoption rate. Extreme Gradient Boosting<sup>1</sup> (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>2</sup>  scores (0.42 and 0.36, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
+
+A classifier model was developed to predict pet adoption rate in an effort to help shelters, rescuers and owners rehome their pets faster. Extreme Gradient Boosting<sup>1</sup> (XGBoost) gave the highest accuracy and quadratic Cohen's kappa<sup>2</sup>  scores (0.42 and 0.36, respectively) among all the classifiers and ensemble methods that were used.  Enhancements were recommended for Petfinder.my to help boost the adoptability of the pets.  
 
 As a supplement, a content-based recommender system was also created.  ResNet-50<sup>3</sup> was employed to extract features from the images while cosine similarity<sup>4</sup>  was used to measure similarities between pets.
 
